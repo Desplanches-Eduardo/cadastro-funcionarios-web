@@ -48,6 +48,11 @@
   gap: 18px;
 }
 
+/* Botão de recolher: escondido no computador. */
+.alternar {
+  display: none;
+}
+
 .vazia {
   padding: 18px 12px;
   border: 2px dashed var(--divisoria);
@@ -71,5 +76,57 @@
 
   .coluna:last-child {
     border-bottom: 0;
+  }
+
+  /* Cabeçalho em grade: fita e botão na primeira linha, resumo embaixo. */
+  .cabecalho {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    column-gap: 8px;
+  }
+
+  .resumo {
+    grid-column: 1 / -1;
+  }
+
+  .alternar {
+    /* Primeira linha, ao lado da fita (sem isso a grade a joga numa linha nova). */
+    grid-column: 2;
+    grid-row: 1;
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    margin: -6px -8px -6px 0;
+    padding: 0;
+    color: var(--tinta-suave);
+    background: transparent;
+    border: 0;
+    border-radius: 3px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .alternar svg {
+    transition: rotate 0.15s ease-out;
+  }
+
+  .alternar[aria-expanded='false'] svg {
+    rotate: -90deg;
+  }
+
+  .recolhida {
+    display: none;
+  }
+
+  .coluna:has(.recolhida) .cabecalho {
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 640px) and (prefers-reduced-motion: reduce) {
+  .alternar svg {
+    transition: none;
   }
 }

@@ -63,7 +63,7 @@ export function GavetaPessoa() {
   }
 
   return (
-    <Gaveta titulo={atual ? 'Editar pessoa' : 'Cadastrar pessoa'}>
+    <Gaveta titulo={atual ? 'Editar pessoa' : 'Cadastrar pessoa'} aba={atual?.nome ?? undefined}>
       <FormPessoa key={id ?? 'nova'} atual={atual} todos={funcionarios.data} tarefas={tarefas.data} />
       {/* A chave zera a confirmação ao trocar de pessoa; o prefixo evita
           repetir a chave do formulário, que é irmão deste componente. */}

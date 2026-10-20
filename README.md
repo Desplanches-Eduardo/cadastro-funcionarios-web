@@ -70,6 +70,17 @@ canto da ficha abre a lista de tarefas; as setas andam pela lista.
 A troca é otimista: a ficha muda de coluna na hora e o `PUT` vai em seguida, com o registro
 completo. Se o servidor recusar, a ficha volta para onde estava e um aviso explica.
 
+## Celular e acessibilidade
+
+No celular as colunas ficam empilhadas e cada uma pode ser recolhida pela seta ao lado da
+fita; o navegador lembra quais ficaram recolhidas (localStorage). No computador elas ficam
+lado a lado, e uma sombra na borda indica que há mais colunas para rolar.
+
+O título da aba acompanha a gaveta aberta ("Ana Souza — Quadro de turno"). A gaveta e a ficha
+arrastada respeitam a preferência de movimento reduzido do sistema. As cores de texto passam no
+contraste mínimo da WCAG AA, e o quadro, as gavetas e o menu passaram sem violações na
+varredura do axe-core.
+
 ## Excluir
 
 No pé da gaveta de edição. O botão vira uma pergunta dentro da própria gaveta, com o foco em

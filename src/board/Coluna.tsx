@@ -7,6 +7,7 @@ import { contarPessoas, type ColunaDoQuadro } from './agrupar'
 import { idAlvo, resumoDe, type DadosAlvo, type DadosFicha } from './arrasto'
 import { infoDificuldade } from './dificuldade'
 import { FichaArrastavel } from './FichaArrastavel'
+import { useColunaRecolhida } from './recolhidas'
 import styles from './Coluna.module.css'
 import fita from './Fita.module.css'
 
@@ -30,6 +31,9 @@ export function Coluna({ coluna, destinos }: Props) {
   // Cada fita sai um pouco torta, como coladas à mão; o ângulo vem do id
   // para não mudar a cada recarga.
   const inclinacao = ((tarefa.id % 3) - 1) * 0.6
+
+  const [recolhida, alternar] = useColunaRecolhida(tarefa.id)
+  const idConteudo = `coluna-${tarefa.id}-fichas`
 
   return (
     <section
@@ -56,19 +60,34 @@ export function Coluna({ coluna, destinos }: Props) {
           </span>
           <span>{contarPessoas(pessoas.length)}</span>
         </p>
+        {/* Só aparece no celular (CSS); no computador as colunas ficam sempre abertas. */}
+        <button
+          type="button"
+          className={styles.alternar}
+          aria-expanded={!recolhida}
+          aria-controls={idConteudo}
+          aria-label={`${recolhida ? 'Mostrar' : 'Recolher'} ${tarefa.nome || 'tarefa'}`}
+          onClick={alternar}
+        >
+          <svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true">
+            <path d="m5 8 5 5 5-5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </button>
       </header>
 
-      {pessoas.length === 0 ? (
-        <p className={styles.vazia}>Ninguém nesta tarefa. Arraste uma ficha para cá.</p>
-      ) : (
-        <ul className={styles.fichas}>
-          {pessoas.map((p) => (
-            <li key={p.id}>
-              <FichaArrastavel pessoa={p} corIma={dificuldade.cor} destinos={destinos} />
-            </li>
-          ))}
-        </ul>
-      )}
+      <div id={idConteudo} className={recolhida ? `${styles.conteudo} ${styles.recolhida}` : styles.conteudo}>
+        {pessoas.length === 0 ? (
+          <p className={styles.vazia}>Ninguém nesta tarefa. Arraste uma ficha para cá.</p>
+        ) : (
+          <ul className={styles.fichas}>
+            {pessoas.map((p) => (
+              <li key={p.id}>
+                <FichaArrastavel pessoa={p} corIma={dificuldade.cor} destinos={destinos} />
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
     </section>
   )
 }

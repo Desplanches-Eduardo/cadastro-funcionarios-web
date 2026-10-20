@@ -58,7 +58,7 @@ export function GavetaTarefa() {
   }
 
   return (
-    <Gaveta titulo={atual ? 'Editar tarefa' : 'Criar tarefa'}>
+    <Gaveta titulo={atual ? 'Editar tarefa' : 'Criar tarefa'} aba={atual?.nome ?? undefined}>
       <FormTarefa key={id ?? 'nova'} atual={atual} />
       {atual && <ExcluirTarefa key={`excluir-${atual.id}`} tarefa={atual} />}
     </Gaveta>

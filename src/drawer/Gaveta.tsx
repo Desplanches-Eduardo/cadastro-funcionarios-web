@@ -6,7 +6,17 @@ import styles from './Gaveta.module.css'
 // Esc para fechar, foco preso dentro do painel e o quadro atrás inativo.
 // Qualquer forma de fechar (Esc, botão, clique fora) dispara o evento
 // "close", e ele leva de volta ao quadro.
-export function Gaveta({ titulo, children }: { titulo: string; children: ReactNode }) {
+interface Props {
+  titulo: string
+  // O que aparece na aba do navegador, se for diferente do título (ex.: o
+  // nome da pessoa). Ajuda a achar a aba e é lido por leitores de tela.
+  aba?: string
+  children: ReactNode
+}
+
+const TITULO_PADRAO = 'Quadro de turno'
+
+export function Gaveta({ titulo, aba, children }: Props) {
   const ref = useRef<HTMLDialogElement>(null)
   const fechar = useFecharGaveta()
 
@@ -14,6 +24,13 @@ export function Gaveta({ titulo, children }: { titulo: string; children: ReactNo
     const dialog = ref.current
     if (dialog && !dialog.open) dialog.showModal()
   }, [])
+
+  useEffect(() => {
+    document.title = `${aba ?? titulo} — ${TITULO_PADRAO}`
+    return () => {
+      document.title = TITULO_PADRAO
+    }
+  }, [aba, titulo])
 
   return (
     <dialog
