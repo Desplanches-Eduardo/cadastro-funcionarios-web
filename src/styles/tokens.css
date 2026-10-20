@@ -15,7 +15,7 @@
 
   /* Tinta */
   --tinta: #1a2433; /* texto: azul-escuro de marcador, não preto */
-  --tinta-suave: #4f5c6c; /* texto secundário (contraste 6.4:1 sobre --quadro) */
+  --tinta-suave: #485464; /* texto secundário: 5.0:1 sobre --parede, 6.4:1 sobre --quadro */
   --marcador: #1f4fa0; /* foco, botões, links */
   --etiqueta: #1a2433; /* fita do rotulador */
   --etiqueta-texto: #f2f5f8;
