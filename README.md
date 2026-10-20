@@ -1,8 +1,8 @@
 # cadastro-funcionarios-web
 
-Frontend do [CadastroDeFuncionarios](../CadastroDeFuncionarios), em React + Vite + TypeScript.
-A ideia é um quadro de turno: cada tarefa é uma coluna e cada funcionário é uma ficha presa
-nela.
+Frontend do [CadastroDeFuncionarios](https://github.com/Desplanches-Eduardo/CadastroDeFuncionarios),
+em React + Vite + TypeScript. A ideia é um quadro de turno: cada tarefa é uma coluna e cada
+funcionário é uma ficha presa nela.
 
 ## Autoria
 
