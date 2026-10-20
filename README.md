@@ -1,5 +1,7 @@
 # cadastro-funcionarios-web
 
+![React](https://img.shields.io/badge/React-19.3.1-6366f1?style=flat-square&labelColor=1e293b&logo=react&logoColor=white) ![TypeScript](https://img.shields.io/badge/TypeScript-6.0.3-6366f1?style=flat-square&labelColor=1e293b&logo=typescript&logoColor=white) ![Vite](https://img.shields.io/badge/Vite-8.3.4-6366f1?style=flat-square&labelColor=1e293b&logo=vite&logoColor=white) ![Vitest](https://img.shields.io/badge/Vitest-5.0.5-6366f1?style=flat-square&labelColor=1e293b&logo=vitest&logoColor=white) ![CSS_Modules](https://img.shields.io/badge/CSS_Modules-6366f1?style=flat-square&labelColor=1e293b&logo=cssmodules&logoColor=white)
+
 Frontend do [CadastroDeFuncionarios](https://github.com/Desplanches-Eduardo/CadastroDeFuncionarios),
 em React + Vite + TypeScript. A ideia é um quadro de turno: cada tarefa é uma coluna e cada
 funcionário é uma ficha presa nela.
