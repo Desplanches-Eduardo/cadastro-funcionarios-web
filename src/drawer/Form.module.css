@@ -1,0 +1,118 @@
+.form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 0 24px 24px;
+}
+
+/* Faixa com a cor do quadro, onde a ficha ou a fita aparece enquanto se digita. */
+.previa {
+  margin: 0 -24px 4px;
+  padding: 22px 24px 20px;
+  background: var(--quadro);
+  border-block: 1px solid var(--ficha-borda);
+}
+
+.previa > * {
+  max-width: 260px;
+}
+
+.previaTarefa {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: var(--t-1);
+  color: var(--tinta-suave);
+}
+
+.previaDificuldade {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.erroGeral {
+  padding: 10px 12px;
+  font-size: var(--t-1);
+  color: var(--erro);
+  background: rgb(194 58 46 / 0.07);
+  border-left: 3px solid var(--alta);
+}
+
+.acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 8px;
+}
+
+.aviso {
+  padding: 0 24px 24px;
+  max-width: 60ch;
+}
+
+.aviso > * + * {
+  margin-top: 16px;
+}
+
+/* Escolha de dificuldade: três ímãs, um deles marcado. */
+.grupo {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.legenda {
+  padding: 0;
+  margin-bottom: 8px;
+  font-size: 0.9375rem;
+  font-weight: 500;
+}
+
+.opcoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.opcao {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px 8px 12px;
+  border: 1px solid var(--campo-borda);
+  border-radius: 3px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.opcao:has(input:checked) {
+  border-color: var(--tinta);
+  box-shadow: inset 0 0 0 1px var(--tinta);
+  font-weight: 500;
+}
+
+.opcao:has(input:focus-visible) {
+  outline: 2px solid var(--marcador);
+  outline-offset: 2px;
+}
+
+/* Esconde o rádio sem tirá-lo do teclado nem do leitor de tela. */
+.oculto {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.erroGrupo {
+  margin-top: 6px;
+  font-size: var(--t-1);
+  font-weight: 500;
+  color: var(--erro);
+}

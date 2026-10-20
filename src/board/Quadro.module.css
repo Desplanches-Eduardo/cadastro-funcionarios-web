@@ -73,18 +73,6 @@
   font-size: var(--t0);
 }
 
-.botao {
-  padding: 8px 14px;
-  font: inherit;
-  font-size: var(--t-1);
-  font-weight: 500;
-  color: #fff;
-  background: var(--marcador);
-  border: 0;
-  border-radius: 3px;
-  cursor: pointer;
-}
-
 @media (max-width: 640px) {
   .moldura {
     margin: 0 8px 8px;

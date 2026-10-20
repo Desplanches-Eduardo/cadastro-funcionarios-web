@@ -1,9 +1,17 @@
 .barra {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 24px;
+  padding: 16px 26px 14px;
+}
+
+.identificacao {
+  display: flex;
+  flex-wrap: wrap;
   align-items: baseline;
   gap: 4px 16px;
-  padding: 18px 26px 14px;
 }
 
 .titulo {
@@ -18,8 +26,14 @@
   color: var(--tinta-suave);
 }
 
+.acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
 @media (max-width: 640px) {
   .barra {
-    padding: 14px 16px 10px;
+    padding: 14px 16px 12px;
   }
 }

@@ -19,6 +19,8 @@
   --marcador: #1f4fa0; /* foco, botões, links */
   --etiqueta: #1a2433; /* fita do rotulador */
   --etiqueta-texto: #f2f5f8;
+  --campo-borda: #77828f; /* borda de input (3.9:1 sobre branco) */
+  --erro: #a3291f; /* texto de erro, mais escuro que o ímã --alta para ler bem */
 
   /* Ímãs de dificuldade */
   --baixa: #3e8e5c;

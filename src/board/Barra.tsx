@@ -1,3 +1,6 @@
+import { Link } from 'react-router'
+import { DO_QUADRO } from '../drawer/navegacao'
+import botoes from '../ui/botoes.module.css'
 import styles from './Barra.module.css'
 
 function hoje(): string {
@@ -13,8 +16,18 @@ function hoje(): string {
 export function Barra() {
   return (
     <header className={styles.barra}>
-      <h1 className={styles.titulo}>Quadro de turno</h1>
-      <p className={styles.data}>{hoje()}</p>
+      <div className={styles.identificacao}>
+        <h1 className={styles.titulo}>Quadro de turno</h1>
+        <p className={styles.data}>{hoje()}</p>
+      </div>
+      <nav className={styles.acoes} aria-label="Ações do quadro">
+        <Link to="/tarefa/nova" state={DO_QUADRO} className={botoes.secundario}>
+          Criar tarefa
+        </Link>
+        <Link to="/pessoa/nova" state={DO_QUADRO} className={botoes.primario}>
+          Cadastrar pessoa
+        </Link>
+      </nav>
     </header>
   )
 }

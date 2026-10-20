@@ -10,6 +10,16 @@
   box-shadow: var(--sombra-ficha);
 }
 
+.clicavel {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.clicavel:hover {
+  border-color: var(--moldura);
+}
+
 /* O ímã fica metade para fora da borda de cima, como se prendesse a ficha. */
 .ima {
   position: absolute;

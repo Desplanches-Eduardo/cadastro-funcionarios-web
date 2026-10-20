@@ -1,8 +1,11 @@
+import { Link } from 'react-router'
+import { DO_QUADRO } from '../drawer/navegacao'
 import { Ima } from '../ui/Ima'
 import { contarPessoas, type ColunaDoQuadro } from './agrupar'
 import { infoDificuldade } from './dificuldade'
 import { Ficha } from './Ficha'
 import styles from './Coluna.module.css'
+import fita from './Fita.module.css'
 
 // Uma tarefa no quadro: a fita do rotulador no topo, a dificuldade e quem está nela.
 export function Coluna({ coluna }: { coluna: ColunaDoQuadro }) {
@@ -17,8 +20,16 @@ export function Coluna({ coluna }: { coluna: ColunaDoQuadro }) {
   return (
     <section className={styles.coluna} aria-labelledby={tituloId}>
       <header className={styles.cabecalho}>
-        <h2 id={tituloId} className={styles.fita} style={{ rotate: `${inclinacao}deg` }}>
-          {tarefa.nome || 'Tarefa sem nome'}
+        <h2 id={tituloId} className={styles.titulo}>
+          <Link
+            to={`/tarefa/${tarefa.id}`}
+            state={DO_QUADRO}
+            className={fita.fita}
+            style={{ rotate: `${inclinacao}deg` }}
+            title="Editar tarefa"
+          >
+            {tarefa.nome || 'Tarefa sem nome'}
+          </Link>
         </h2>
         <p className={styles.resumo}>
           <span className={styles.dificuldade}>
@@ -35,7 +46,7 @@ export function Coluna({ coluna }: { coluna: ColunaDoQuadro }) {
         <ul className={styles.fichas}>
           {pessoas.map((p) => (
             <li key={p.id}>
-              <Ficha pessoa={p} corIma={dificuldade.cor} />
+              <Ficha pessoa={p} corIma={dificuldade.cor} para={`/pessoa/${p.id}`} />
             </li>
           ))}
         </ul>

@@ -1,0 +1,45 @@
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.rotulo {
+  font-size: 0.9375rem;
+  font-weight: 500;
+}
+
+.controle {
+  width: 100%;
+  padding: 9px 11px;
+  font: inherit;
+  color: var(--tinta);
+  background: #fff;
+  border: 1px solid var(--campo-borda);
+  border-radius: 3px;
+}
+
+.controle:focus-visible {
+  outline: 2px solid var(--marcador);
+  outline-offset: 0;
+  border-color: var(--marcador);
+}
+
+.controle[aria-invalid='true'] {
+  border-color: var(--erro);
+}
+
+.dica,
+.erro {
+  font-size: var(--t-1);
+  line-height: 1.35;
+}
+
+.dica {
+  color: var(--tinta-suave);
+}
+
+.erro {
+  color: var(--erro);
+  font-weight: 500;
+}

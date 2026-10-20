@@ -1,0 +1,23 @@
+/* Fita de rotulador: fundo escuro, letras claras e estreitas.
+   Usada no topo das colunas e na prévia do formulário de tarefa. */
+.fita {
+  display: inline-block;
+  max-width: 100%;
+  padding: 3px 10px 4px;
+  background: var(--etiqueta);
+  color: var(--etiqueta-texto);
+  font-family: var(--fonte-estreita);
+  font-weight: 600;
+  font-size: var(--t0);
+  letter-spacing: 0.03em;
+  line-height: 1.25;
+  text-decoration: none;
+  border-radius: 2px;
+  box-shadow: 0 1px 1px rgb(26 36 51 / 0.25);
+  overflow-wrap: anywhere;
+}
+
+a.fita:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}

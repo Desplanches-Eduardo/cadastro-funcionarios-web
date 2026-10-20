@@ -1,0 +1,41 @@
+/* Dois tipos de botão. Funcionam em <button> e em <Link>. */
+
+.primario,
+.secundario {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 16px 10px;
+  font: inherit;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.2;
+  text-decoration: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.primario {
+  color: #fff;
+  background: var(--marcador);
+  border: 1px solid var(--marcador);
+}
+
+.primario:hover {
+  background: #1a4387;
+}
+
+.primario:disabled {
+  opacity: 0.65;
+  cursor: progress;
+}
+
+.secundario {
+  color: var(--tinta);
+  background: transparent;
+  border: 1px solid var(--campo-borda);
+}
+
+.secundario:hover {
+  background: rgb(26 36 51 / 0.06);
+}

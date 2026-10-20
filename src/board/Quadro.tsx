@@ -1,5 +1,8 @@
 import type { ReactNode } from 'react'
+import { Link } from 'react-router'
+import { DO_QUADRO } from '../drawer/navegacao'
 import { useFuncionarios, useTarefas } from '../hooks/queries'
+import botoes from '../ui/botoes.module.css'
 import { contarPessoas, montarQuadro } from './agrupar'
 import { Coluna } from './Coluna'
 import { Ficha } from './Ficha'
@@ -25,7 +28,7 @@ export function Quadro() {
           <p>{erro?.message}</p>
           <button
             type="button"
-            className={styles.botao}
+            className={botoes.primario}
             onClick={() => {
               void funcionarios.refetch()
               void tarefas.refetch()
@@ -43,9 +46,12 @@ export function Quadro() {
   return (
     <Moldura>
       {colunas.length === 0 ? (
-        <p className={styles.aviso}>
-          Nenhuma tarefa no quadro. Crie a primeira para começar a escalar a equipe.
-        </p>
+        <div className={styles.aviso}>
+          <p>Nenhuma tarefa no quadro. Crie a primeira para começar a escalar a equipe.</p>
+          <Link to="/tarefa/nova" state={DO_QUADRO} className={botoes.primario}>
+            Criar tarefa
+          </Link>
+        </div>
       ) : (
         <div className={styles.colunas}>
           {colunas.map((c) => (
@@ -65,7 +71,7 @@ export function Quadro() {
           <ul className={styles.bandejaFichas}>
             {semTarefa.map((p) => (
               <li key={p.id}>
-                <Ficha pessoa={p} corIma="var(--neutro)" />
+                <Ficha pessoa={p} corIma="var(--neutro)" para={`/pessoa/${p.id}`} />
               </li>
             ))}
           </ul>

@@ -34,7 +34,8 @@ computador: depois de ligar o PC, rode `npm run api:fundo` de novo.
 ## Como o frontend fala com a API
 
 O backend não libera CORS. O Vite tem um proxy (`vite.config.ts`): o navegador chama
-`/api/...` na porta 5173 e o Vite repassa para `localhost:8080`, tirando o `/api`.
+`/api/...` na porta 5173 e o Vite repassa para `localhost:8080`, tirando o `/api`. Para
+apontar para outro backend (um de teste, por exemplo): `API_URL=http://localhost:8081 npm run dev`.
 
 Todas as chamadas passam por `src/api/client.ts`, que trata as respostas da API:
 
@@ -42,3 +43,19 @@ Todas as chamadas passam por `src/api/client.ts`, que trata as respostas da API:
 - o `PUT` grava o objeto inteiro, então toda edição envia o registro completo;
 - `404` e `409` trazem uma frase em português, mostrada como está;
 - `500` (email repetido, por exemplo) e backend desligado viram mensagens próprias.
+
+## Telas
+
+O quadro fica sempre na tela; cadastrar e editar acontecem numa gaveta lateral por cima dele.
+Cada gaveta tem endereço próprio, então o voltar do navegador fecha a gaveta e um link pode
+abrir uma ficha direto:
+
+| Endereço | Gaveta |
+| --- | --- |
+| `/pessoa/nova` | Cadastrar pessoa |
+| `/pessoa/:id` | Editar pessoa (clique na ficha) |
+| `/tarefa/nova` | Criar tarefa |
+| `/tarefa/:id` | Editar tarefa (clique na fita da coluna) |
+
+O email repetido é barrado no formulário, comparando com a lista já carregada, porque o
+backend responderia `500`.
