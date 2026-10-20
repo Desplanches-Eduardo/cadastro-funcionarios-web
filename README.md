@@ -94,3 +94,26 @@ No pé da gaveta de edição. O botão vira uma pergunta dentro da própria gave
 (o backend responde `409` se houver alguém nela): com gente, o botão fica desativado e diz
 quantas pessoas mover antes. Se o `409` vier mesmo assim, porque alguém entrou na tarefa
 depois que a tela carregou, a gaveta explica e o quadro recarrega.
+
+## Testes
+
+    npm test              # roda uma vez (cerca de 3 segundos)
+    npm run test:watch    # roda de novo a cada arquivo salvo
+    npx vitest run src/telas.test.tsx -t "409"   # um arquivo, filtrando pelo nome do teste
+
+Não precisam do backend ligado. O `src/test/api-falsa.ts` é um backend falso em memória (MSW)
+que imita o Spring, inclusive as particularidades: o `POST` responde texto, o `PUT` substitui o
+registro inteiro, email repetido dá `500` e excluir tarefa com gente dá `409`. Uma chamada que o
+backend falso não conhece faz o teste falhar.
+
+- `drawer/validar.test.ts`, `board/quadro-dados.test.ts`: regras do formulário, montagem das
+  colunas, dificuldade e o corpo completo do `PUT` ao mover alguém.
+- `api/client.test.ts`: o tratamento de cada resposta da API (texto, 404, 409, 500, backend fora).
+- `hooks/mover.test.tsx`: a troca otimista (a tela muda antes da resposta), o desfazer quando o
+  servidor recusa e o `PUT` completo.
+- `telas.test.tsx`: o app montado, com cliques e digitação — quadro, cadastro, edição, menu
+  "Mover para" e exclusão, inclusive o `409` de uma tarefa que ganhou gente com a tela aberta.
+
+O jsdom não tem o `<dialog>` modal nem o Popover; o `src/test/setup.ts` traz substitutos mínimos.
+O arraste com o mouse não é testado aqui, porque o jsdom não simula um ponteiro com posição; a
+mutação que ele chama é a mesma do menu e tem testes próprios.
