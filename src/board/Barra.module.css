@@ -1,0 +1,25 @@
+.barra {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 16px;
+  padding: 18px 26px 14px;
+}
+
+.titulo {
+  font-family: var(--fonte-estreita);
+  font-weight: 600;
+  font-size: var(--t2);
+  line-height: 1.1;
+}
+
+.data {
+  font-size: var(--t-1);
+  color: var(--tinta-suave);
+}
+
+@media (max-width: 640px) {
+  .barra {
+    padding: 14px 16px 10px;
+  }
+}

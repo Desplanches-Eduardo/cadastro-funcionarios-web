@@ -1,0 +1,81 @@
+.coluna {
+  flex: 0 0 256px;
+  display: flex;
+  flex-direction: column;
+  padding: 0 16px;
+  border-right: 2px solid var(--divisoria);
+}
+
+.coluna:last-child {
+  border-right: 0;
+}
+
+.cabecalho {
+  margin-bottom: 20px;
+}
+
+/* Fita de rotulador: fundo escuro, letras claras e estreitas. */
+.fita {
+  display: inline-block;
+  max-width: 100%;
+  padding: 3px 10px 4px;
+  background: var(--etiqueta);
+  color: var(--etiqueta-texto);
+  font-family: var(--fonte-estreita);
+  font-weight: 600;
+  font-size: var(--t0);
+  letter-spacing: 0.03em;
+  line-height: 1.25;
+  border-radius: 2px;
+  box-shadow: 0 1px 1px rgb(26 36 51 / 0.25);
+  overflow-wrap: anywhere;
+}
+
+.resumo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  font-size: var(--t-1);
+  color: var(--tinta-suave);
+}
+
+.dificuldade {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Espaço vertical maior que o ímã, para ele não encostar na ficha de cima. */
+.fichas {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.vazia {
+  padding: 18px 12px;
+  border: 2px dashed var(--divisoria);
+  border-radius: 3px;
+  font-size: var(--t-1);
+  color: var(--tinta-suave);
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .coluna {
+    flex: none;
+    padding: 0 0 24px;
+    border-right: 0;
+    border-bottom: 2px solid var(--divisoria);
+  }
+
+  .coluna + .coluna {
+    padding-top: 22px;
+  }
+
+  .coluna:last-child {
+    border-bottom: 0;
+  }
+}

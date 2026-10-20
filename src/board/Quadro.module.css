@@ -1,0 +1,107 @@
+/* A moldura de alumínio em volta do quadro branco. */
+.moldura {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  margin: 0 16px 16px;
+  background: var(--quadro);
+  border: 10px solid var(--moldura);
+  border-radius: 8px;
+  box-shadow:
+    inset 0 0 0 1px var(--moldura-luz),
+    0 1px 0 var(--moldura-luz);
+  overflow: hidden;
+}
+
+/* As colunas rolam de lado dentro do quadro; a página nunca rola de lado. */
+.colunas {
+  flex: 1;
+  display: flex;
+  align-items: stretch;
+  overflow-x: auto;
+  padding: 24px 8px 32px;
+}
+
+/* A calha: rebaixada em relação ao quadro, com sombra na borda de cima. */
+.bandeja {
+  padding: 14px 24px 22px;
+  background: var(--bandeja);
+  border-top: 2px solid var(--moldura);
+  box-shadow: inset 0 8px 10px -8px rgb(26 36 51 / 0.3);
+}
+
+.bandejaTitulo {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 18px;
+  font-family: var(--fonte-estreita);
+  font-weight: 600;
+  font-size: var(--t0);
+}
+
+.contagem {
+  font-family: var(--fonte);
+  font-weight: 400;
+  font-size: var(--t-1);
+  color: var(--tinta-suave);
+}
+
+.bandejaFichas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px 16px;
+}
+
+.bandejaFichas > li {
+  width: 224px;
+}
+
+.bandejaVazia {
+  font-size: var(--t-1);
+  color: var(--tinta-suave);
+}
+
+.aviso {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  max-width: 60ch;
+  padding: 32px 24px;
+  font-size: var(--t0);
+}
+
+.botao {
+  padding: 8px 14px;
+  font: inherit;
+  font-size: var(--t-1);
+  font-weight: 500;
+  color: #fff;
+  background: var(--marcador);
+  border: 0;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+@media (max-width: 640px) {
+  .moldura {
+    margin: 0 8px 8px;
+    border-width: 6px;
+  }
+
+  .colunas {
+    flex-direction: column;
+    overflow-x: visible;
+    padding: 20px 16px 8px;
+  }
+
+  .bandeja {
+    padding: 14px 16px 20px;
+  }
+
+  .bandejaFichas > li {
+    width: 100%;
+  }
+}

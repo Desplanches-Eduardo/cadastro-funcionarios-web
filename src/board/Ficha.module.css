@@ -1,0 +1,52 @@
+.ficha {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 12px 12px;
+  background: var(--ficha);
+  border: 1px solid var(--ficha-borda);
+  border-radius: 3px;
+  box-shadow: var(--sombra-ficha);
+}
+
+/* O ímã fica metade para fora da borda de cima, como se prendesse a ficha. */
+.ima {
+  position: absolute;
+  top: -7px;
+  left: 50%;
+  translate: -50% 0;
+}
+
+.avatar {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--quadro);
+  color: var(--tinta-suave);
+  font-family: var(--fonte-estreita);
+  font-weight: 600;
+  font-size: var(--t-1);
+  object-fit: cover;
+}
+
+.texto {
+  min-width: 0;
+}
+
+.nome {
+  font-size: var(--t0);
+  font-weight: 500;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+.cargo {
+  margin-top: 2px;
+  font-size: var(--t-1);
+  color: var(--tinta-suave);
+  line-height: 1.3;
+}

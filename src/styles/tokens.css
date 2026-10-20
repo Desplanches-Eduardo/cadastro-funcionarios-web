@@ -1,0 +1,86 @@
+/* Tokens do quadro de turno. A referência é um quadro branco magnético:
+   superfície cinza-azulada, moldura de alumínio, tinta de marcador e ímãs.
+   Todo componente usa estas variáveis; nenhum deve ter cor solta. */
+
+:root {
+  /* Superfícies */
+  --parede: #cbd2d9; /* fundo da página, atrás do quadro */
+  --quadro: #e6eaee; /* superfície do quadro branco */
+  --bandeja: #d8dde2; /* calha de baixo, onde ficam as fichas sem tarefa */
+  --moldura: #8e99a4; /* alumínio da borda */
+  --moldura-luz: #b9c1c9; /* reflexo do alumínio */
+  --divisoria: rgb(142 153 164 / 0.4); /* linhas entre colunas */
+  --ficha: #fbfcfd;
+  --ficha-borda: #d2d8de;
+
+  /* Tinta */
+  --tinta: #1a2433; /* texto: azul-escuro de marcador, não preto */
+  --tinta-suave: #4f5c6c; /* texto secundário (contraste 6.4:1 sobre --quadro) */
+  --marcador: #1f4fa0; /* foco, botões, links */
+  --etiqueta: #1a2433; /* fita do rotulador */
+  --etiqueta-texto: #f2f5f8;
+
+  /* Ímãs de dificuldade */
+  --baixa: #3e8e5c;
+  --media: #e0ae1c;
+  --alta: #c23a2e;
+  --neutro: #9aa4ae; /* dificuldade fora do padrão, ou sem tarefa */
+
+  /* Tipografia: uma família, a largura faz a hierarquia */
+  --fonte: 'Barlow', system-ui, sans-serif;
+  --fonte-estreita: 'Barlow Condensed', 'Barlow', system-ui, sans-serif;
+
+  /* Escala modular 1.25 a partir de 14px */
+  --t-1: 0.875rem; /* 14px: cargo, contagens */
+  --t0: 1.09375rem; /* 17.5px: nomes, etiquetas */
+  --t1: 1.375rem; /* 22px */
+  --t2: 1.71875rem; /* 27.5px: título */
+
+  /* Sombra só para o que sai do quadro (a ficha) */
+  --sombra-ficha: 0 1px 0 rgb(26 36 51 / 0.06), 0 2px 5px rgb(26 36 51 / 0.08);
+
+  color-scheme: light;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--parede);
+  color: var(--tinta);
+  font-family: var(--fonte);
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+h1,
+h2,
+h3,
+p,
+ul {
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--marcador);
+  outline-offset: 2px;
+}
+
+#root {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
