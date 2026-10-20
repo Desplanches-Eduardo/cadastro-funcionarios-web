@@ -25,11 +25,13 @@ export interface Funcionario {
 
 // O que se envia no POST e no PUT. Sem id (no POST, id no corpo dá 500)
 // e a tarefa vai só como referência pelo id.
+// Os textos aceitam null para que mover alguém de tarefa reenvie o registro
+// exatamente como veio, sem transformar um null do banco em "".
 export interface FuncionarioInput {
-  nome: string
-  email: string
+  nome: string | null
+  email: string | null
   url_img: string | null
-  cargo: string
+  cargo: string | null
   idade: number
   tarefas: { id: number } | null
 }

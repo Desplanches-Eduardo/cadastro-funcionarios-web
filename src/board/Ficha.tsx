@@ -3,6 +3,7 @@ import { Link } from 'react-router'
 import type { Funcionario } from '../api/types'
 import { DO_QUADRO } from '../drawer/navegacao'
 import { Ima } from '../ui/Ima'
+import { acabouDeArrastar } from './arrasto'
 import styles from './Ficha.module.css'
 
 function iniciais(nome: string | null): string {
@@ -31,7 +32,13 @@ export function Ficha({ pessoa, corIma, para }: Props) {
     <>
       <Ima cor={corIma} className={styles.ima} />
       {temFoto ? (
-        <img className={styles.avatar} src={pessoa.url_img!} alt="" onError={() => setFotoFalhou(true)} />
+        <img
+          className={styles.avatar}
+          src={pessoa.url_img!}
+          alt=""
+          draggable={false}
+          onError={() => setFotoFalhou(true)}
+        />
       ) : (
         <span className={styles.avatar} aria-hidden="true">
           {iniciais(pessoa.nome)}
@@ -46,7 +53,16 @@ export function Ficha({ pessoa, corIma, para }: Props) {
 
   if (para) {
     return (
-      <Link to={para} state={DO_QUADRO} className={`${styles.ficha} ${styles.clicavel}`}>
+      <Link
+        to={para}
+        state={DO_QUADRO}
+        className={`${styles.ficha} ${styles.clicavel}`}
+        // O arrastar nativo de links brigaria com o do quadro.
+        draggable={false}
+        onClick={(e) => {
+          if (acabouDeArrastar()) e.preventDefault()
+        }}
+      >
         {conteudo}
       </Link>
     )

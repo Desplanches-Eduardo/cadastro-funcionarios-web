@@ -59,3 +59,13 @@ abrir uma ficha direto:
 
 O email repetido é barrado no formulário, comparando com a lista já carregada, porque o
 backend responderia `500`.
+
+## Mudar alguém de tarefa
+
+Arrastando a ficha para outra coluna, ou para a bandeja "Sem tarefa" embaixo do quadro. O
+arraste começa depois de 6px com o mouse, ou segurando a ficha por um instante no celular,
+então um clique simples continua abrindo a ficha. Pelo teclado (ou sem arrastar), o botão no
+canto da ficha abre a lista de tarefas; as setas andam pela lista.
+
+A troca é otimista: a ficha muda de coluna na hora e o `PUT` vai em seguida, com o registro
+completo. Se o servidor recusar, a ficha volta para onde estava e um aviso explica.

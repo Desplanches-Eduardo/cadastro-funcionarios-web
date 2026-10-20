@@ -10,10 +10,13 @@
   box-shadow: var(--sombra-ficha);
 }
 
+/* Ficha do quadro: abre ao clicar, pode ser arrastada, e deixa espaço à
+   direita para o botão "Mover para". */
 .clicavel {
+  padding-right: 40px;
   color: inherit;
   text-decoration: none;
-  cursor: pointer;
+  cursor: grab;
 }
 
 .clicavel:hover {

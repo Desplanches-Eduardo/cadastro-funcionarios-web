@@ -1,0 +1,82 @@
+/* O botão só aparece quando a ficha está sob o mouse ou com foco, para o
+   quadro não ficar cheio de ícones. Em telas de toque ele fica sempre visível. */
+.botao {
+  position: absolute;
+  top: 8px;
+  right: 6px;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  color: var(--tinta-suave);
+  background: var(--ficha);
+  border: 1px solid transparent;
+  border-radius: 3px;
+  cursor: pointer;
+  opacity: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+:global(li):hover .botao,
+.botao:focus-visible,
+.aberto {
+  opacity: 1;
+}
+
+.botao:hover,
+.aberto {
+  color: var(--tinta);
+  border-color: var(--ficha-borda);
+  background: var(--quadro);
+}
+
+@media (pointer: coarse) {
+  .botao {
+    opacity: 1;
+  }
+}
+
+.menu {
+  position: fixed;
+  inset: auto;
+  width: 232px;
+  max-height: min(360px, 70dvh);
+  margin: 0;
+  padding: 10px 0 6px;
+  overflow-y: auto;
+  color: var(--tinta);
+  background: var(--ficha);
+  border: 1px solid var(--ficha-borda);
+  border-radius: 4px;
+  box-shadow: 0 8px 24px rgb(26 36 51 / 0.2);
+}
+
+.titulo {
+  padding: 0 14px 6px;
+  font-size: var(--t-1);
+  color: var(--tinta-suave);
+}
+
+.opcao {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 8px 14px;
+  font: inherit;
+  font-size: 0.9375rem;
+  text-align: left;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.opcao:hover {
+  background: var(--quadro);
+}
+
+.opcao:focus-visible {
+  outline-offset: -2px;
+}

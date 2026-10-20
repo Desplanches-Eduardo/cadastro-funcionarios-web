@@ -1,0 +1,13 @@
+.arrastavel {
+  position: relative;
+  /* Sem isso, o toque segurado no celular abre o menu do navegador. */
+  touch-action: manipulation;
+  -webkit-touch-callout: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* O lugar de onde a ficha saiu fica marcado enquanto ela está no ar. */
+.origem {
+  opacity: 0.35;
+}

@@ -16,6 +16,17 @@ export const criarFuncionario = async (dados: FuncionarioInput): Promise<void> =
 export const alterarFuncionario = async (id: number, dados: FuncionarioInput): Promise<Funcionario> =>
   JSON.parse(await send('PUT', `/funcionarios/alterar/${id}`, dados)) as Funcionario
 
+// O registro completo de uma pessoa com outra tarefa (null = sem tarefa).
+// É o corpo do PUT quando alguém é movido no quadro.
+export const comTarefa = (f: Funcionario, tarefaId: number | null): FuncionarioInput => ({
+  nome: f.nome,
+  email: f.email,
+  url_img: f.url_img,
+  cargo: f.cargo,
+  idade: f.idade,
+  tarefas: tarefaId == null ? null : { id: tarefaId },
+})
+
 export const deletarFuncionario = async (id: number): Promise<void> => {
   await send('DELETE', `/funcionarios/deletar/${id}`)
 }
