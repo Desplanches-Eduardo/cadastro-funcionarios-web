@@ -38,7 +38,7 @@ async function request(method: string, path: string, body?: unknown): Promise<Re
       res.status,
       backendFora
         ? 'Não foi possível falar com o servidor em localhost:8080. Ele está rodando?'
-        : 'O servidor recusou a operação. Confira se o email já não está cadastrado.',
+        : 'O servidor recusou a gravação (erro 500). Tente de novo; se continuar, veja o log do backend.',
     )
   }
   throw new ApiError(res.status, texto || `Erro ${res.status}`)
