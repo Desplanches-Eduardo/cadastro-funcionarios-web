@@ -2,7 +2,13 @@
 
 Frontend do [CadastroDeFuncionarios](../CadastroDeFuncionarios), em React + Vite + TypeScript.
 A ideia é um quadro de turno: cada tarefa é uma coluna e cada funcionário é uma ficha presa
-nela. O backend não foi alterado para este projeto.
+nela.
+
+## Autoria
+
+O backend foi escrito à mão pelo autor, sem ajuda do Claude nem de outra ferramenta de IA.
+Este frontend foi feito com o Claude Code, em fases revisadas pelo autor, e não alterou nada
+do backend: as particularidades da API são tratadas deste lado.
 
 ## Como rodar
 
