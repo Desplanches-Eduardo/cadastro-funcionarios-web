@@ -3,12 +3,14 @@ import { useParams } from 'react-router'
 import type { Tarefa } from '../api/types'
 import { chaveDificuldade, infoDificuldade } from '../board/dificuldade'
 import fita from '../board/Fita.module.css'
-import { useSalvarTarefa } from '../hooks/mutations'
-import { useTarefas } from '../hooks/queries'
+import { resumoDe } from '../board/arrasto'
+import { useExcluirTarefa, useSalvarTarefa } from '../hooks/mutations'
+import { useFuncionarios, useTarefas } from '../hooks/queries'
 import { useAvisar } from '../ui/avisos-contexto'
 import botoes from '../ui/botoes.module.css'
 import { Campo } from '../ui/Campo'
 import { Ima } from '../ui/Ima'
+import { Exclusao } from './Exclusao'
 import { Gaveta } from './Gaveta'
 import { useFecharGaveta } from './navegacao'
 import { paraTarefaInput, validarTarefa, type DadosTarefa, type Erros } from './validar'
@@ -58,7 +60,34 @@ export function GavetaTarefa() {
   return (
     <Gaveta titulo={atual ? 'Editar tarefa' : 'Criar tarefa'}>
       <FormTarefa key={id ?? 'nova'} atual={atual} />
+      {atual && <ExcluirTarefa key={`excluir-${atual.id}`} tarefa={atual} />}
     </Gaveta>
+  )
+}
+
+function ExcluirTarefa({ tarefa }: { tarefa: Tarefa }) {
+  const excluir = useExcluirTarefa()
+  const fechar = useFecharGaveta()
+  // Conta pela lista de funcionários, a mesma que o arrastar atualiza na hora.
+  const funcionarios = useFuncionarios()
+  const pessoas = funcionarios.data?.filter((f) => f.tarefas?.id === tarefa.id).length ?? 0
+  const nome = tarefa.nome || 'esta tarefa'
+
+  return (
+    <Exclusao
+      id="excluir-tarefa"
+      rotulo="Excluir tarefa"
+      pergunta={`Excluir a tarefa ${nome}?`}
+      consequencia="A coluna sai do quadro. Não dá para desfazer."
+      bloqueio={
+        pessoas > 0
+          ? `Só dá para excluir uma tarefa vazia. Mova ${pessoas === 1 ? 'a pessoa que está' : `as ${pessoas} pessoas que estão`} nela para outra tarefa antes.`
+          : undefined
+      }
+      pendente={excluir.isPending}
+      erro={excluir.error?.message}
+      onConfirmar={() => excluir.mutate(resumoDe(tarefa), { onSuccess: fechar })}
+    />
   )
 }
 

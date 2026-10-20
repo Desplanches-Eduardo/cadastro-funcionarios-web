@@ -3,11 +3,12 @@ import { useParams } from 'react-router'
 import type { Funcionario, Tarefa } from '../api/types'
 import { infoDificuldade } from '../board/dificuldade'
 import { Ficha } from '../board/Ficha'
-import { useSalvarFuncionario } from '../hooks/mutations'
+import { useExcluirFuncionario, useSalvarFuncionario } from '../hooks/mutations'
 import { useFuncionarios, useTarefas } from '../hooks/queries'
 import { useAvisar } from '../ui/avisos-contexto'
 import botoes from '../ui/botoes.module.css'
 import { Campo } from '../ui/Campo'
+import { Exclusao } from './Exclusao'
 import { Gaveta } from './Gaveta'
 import { useFecharGaveta } from './navegacao'
 import {
@@ -64,7 +65,28 @@ export function GavetaPessoa() {
   return (
     <Gaveta titulo={atual ? 'Editar pessoa' : 'Cadastrar pessoa'}>
       <FormPessoa key={id ?? 'nova'} atual={atual} todos={funcionarios.data} tarefas={tarefas.data} />
+      {/* A chave zera a confirmação ao trocar de pessoa; o prefixo evita
+          repetir a chave do formulário, que é irmão deste componente. */}
+      {atual && <ExcluirPessoa key={`excluir-${atual.id}`} pessoa={atual} />}
     </Gaveta>
+  )
+}
+
+function ExcluirPessoa({ pessoa }: { pessoa: Funcionario }) {
+  const excluir = useExcluirFuncionario()
+  const fechar = useFecharGaveta()
+  const nome = pessoa.nome || 'esta pessoa'
+
+  return (
+    <Exclusao
+      id="excluir-pessoa"
+      rotulo="Excluir pessoa"
+      pergunta={`Excluir ${nome} do quadro?`}
+      consequencia="A ficha e os dados dela somem de vez. Não dá para desfazer."
+      pendente={excluir.isPending}
+      erro={excluir.error?.message}
+      onConfirmar={() => excluir.mutate(pessoa, { onSuccess: fechar })}
+    />
   )
 }
 

@@ -69,3 +69,11 @@ canto da ficha abre a lista de tarefas; as setas andam pela lista.
 
 A troca é otimista: a ficha muda de coluna na hora e o `PUT` vai em seguida, com o registro
 completo. Se o servidor recusar, a ficha volta para onde estava e um aviso explica.
+
+## Excluir
+
+No pé da gaveta de edição. O botão vira uma pergunta dentro da própria gaveta, com o foco em
+"Manter", para um Enter distraído não apagar nada. Uma tarefa só pode ser excluída vazia
+(o backend responde `409` se houver alguém nela): com gente, o botão fica desativado e diz
+quantas pessoas mover antes. Se o `409` vier mesmo assim, porque alguém entrou na tarefa
+depois que a tela carregou, a gaveta explica e o quadro recarrega.

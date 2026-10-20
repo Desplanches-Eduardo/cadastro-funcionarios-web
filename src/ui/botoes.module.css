@@ -39,3 +39,50 @@
 .secundario:hover {
   background: rgb(26 36 51 / 0.06);
 }
+
+/* Ações que apagam dados. O vermelho é o mesmo do ímã "alta". */
+.perigo,
+.perigoForte {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 16px 10px;
+  font: inherit;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.2;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.perigo {
+  color: var(--erro);
+  background: transparent;
+  border: 1px solid var(--erro);
+}
+
+.perigo:hover {
+  background: rgb(194 58 46 / 0.07);
+}
+
+.perigo:disabled {
+  color: var(--tinta-suave);
+  border-color: var(--ficha-borda);
+  background: transparent;
+  cursor: not-allowed;
+}
+
+.perigoForte {
+  color: #fff;
+  background: var(--alta);
+  border: 1px solid var(--alta);
+}
+
+.perigoForte:hover {
+  background: var(--erro);
+}
+
+.perigoForte:disabled {
+  opacity: 0.65;
+  cursor: progress;
+}

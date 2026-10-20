@@ -1,7 +1,8 @@
 import { useMutation, useQueryClient, type QueryClient } from '@tanstack/react-query'
 import { useCallback } from 'react'
-import { alterarFuncionario, comTarefa, criarFuncionario } from '../api/funcionarios'
-import { alterarTarefa, criarTarefa } from '../api/tarefas'
+import { ApiError } from '../api/client'
+import { alterarFuncionario, comTarefa, criarFuncionario, deletarFuncionario } from '../api/funcionarios'
+import { alterarTarefa, criarTarefa, deletarTarefa } from '../api/tarefas'
 import type { Funcionario, FuncionarioInput, TarefaInput, TarefaResumo } from '../api/types'
 import { useAvisar } from '../ui/avisos-contexto'
 import { chaves } from './queries'
@@ -86,5 +87,47 @@ export function useSalvarTarefa() {
       else await alterarTarefa(id, dados)
     },
     onSuccess: () => recarregarQuadro(qc),
+  })
+}
+
+// Exclusões. O quadro recarrega sem await: quem chama fecha a gaveta logo em
+// seguida, antes de a lista nova chegar. Se esperasse, a gaveta mostraria
+// "não encontrada" por um instante, porque o registro já sumiu da lista.
+// Os avisos ficam aqui pelo mesmo motivo da mutação de mover: quem chamou
+// pode já ter sido desmontado quando a resposta chega.
+
+export function useExcluirFuncionario() {
+  const qc = useQueryClient()
+  const avisar = useAvisar()
+  return useMutation({
+    mutationFn: (pessoa: Funcionario) => deletarFuncionario(pessoa.id),
+    onSuccess: (_r, pessoa) => {
+      avisar(`${pessoa.nome ?? 'A pessoa'} foi excluída do quadro`)
+      void recarregarQuadro(qc)
+    },
+  })
+}
+
+export function useExcluirTarefa() {
+  const qc = useQueryClient()
+  const avisar = useAvisar()
+  return useMutation({
+    mutationFn: async (tarefa: TarefaResumo) => {
+      try {
+        await deletarTarefa(tarefa.id)
+      } catch (erro) {
+        // 409: alguém foi posto na tarefa depois que o quadro foi carregado.
+        if (erro instanceof ApiError && erro.status === 409) {
+          throw new ApiError(409, 'Esta tarefa ainda tem pessoas. O quadro foi atualizado: mova-as para outra tarefa antes de excluir.')
+        }
+        throw erro
+      }
+    },
+    onSuccess: (_r, tarefa) => {
+      avisar(`Tarefa excluída: ${tarefa.nome ?? tarefa.id}`)
+      void recarregarQuadro(qc)
+    },
+    // Num 409 o quadro estava desatualizado; recarrega para mostrar quem está lá.
+    onError: () => void recarregarQuadro(qc),
   })
 }
