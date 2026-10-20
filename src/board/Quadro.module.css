@@ -21,6 +21,15 @@
   align-items: stretch;
   overflow-x: auto;
   padding: 24px 8px 32px;
+  /* Sombra na borda que ainda tem colunas escondidas. As duas "tampas" da
+     cor do quadro rolam junto com o conteúdo (local) e cobrem as sombras
+     (scroll) quando a rolagem chega naquele lado. */
+  background:
+    linear-gradient(to right, var(--quadro) 30%, rgb(230 234 238 / 0)) left center / 48px 100% no-repeat local,
+    linear-gradient(to left, var(--quadro) 30%, rgb(230 234 238 / 0)) right center / 48px 100% no-repeat local,
+    radial-gradient(farthest-side at 0 50%, rgb(26 36 51 / 0.18), transparent) left center / 16px 100% no-repeat scroll,
+    radial-gradient(farthest-side at 100% 50%, rgb(26 36 51 / 0.18), transparent) right center / 16px 100% no-repeat scroll;
+  background-color: var(--quadro);
 }
 
 /* A calha: rebaixada em relação ao quadro, com sombra na borda de cima. */
